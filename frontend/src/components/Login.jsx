@@ -9,34 +9,33 @@ const Login = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if the session has expired
+   
     const loginTimestamp = localStorage.getItem('loginTimestamp');
     if (loginTimestamp) {
       const timeElapsed = Date.now() - parseInt(loginTimestamp, 10);
-      // 2 hours in milliseconds
+     
       if (timeElapsed > 2 * 60 * 60 * 1000) {
-        logout();  // If 2 hours have passed, log out the user
+        logout();  
       }
     }
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Get stored email and password from localStorage
+  
     const registeredEmail = localStorage.getItem('email');
     const registeredPassword = localStorage.getItem('password');
-
-    // Validate the entered email and password
+  
     if (email === registeredEmail && password === registeredPassword) {
       alert('Login Successful');
-      localStorage.setItem('loginTimestamp', Date.now().toString()); // Set login timestamp
-      setIsLoggedIn(true);
-      navigate('/sidebar');
+      localStorage.setItem('loginTimestamp', Date.now().toString()); 
+      setIsLoggedIn(true); 
+      navigate('/sidebar'); 
     } else {
       alert('Invalid email or password');
     }
   };
+  
 
   const logout = () => {
     localStorage.removeItem('email');

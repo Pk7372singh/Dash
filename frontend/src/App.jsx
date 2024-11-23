@@ -10,7 +10,7 @@ import Candidate from './components/Candidate';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isRegisterComplete, setIsRegisterComplete] = useState(false);
+  const [setIsRegisterComplete] = useState(false);
 
   return (
     <Router>
