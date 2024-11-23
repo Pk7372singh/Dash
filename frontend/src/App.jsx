@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Register from './components/Register'; // Assuming you have a Register component
+import Register from './components/Register';
 import Login from './components/Login';
 import Sidebar from './components/Sidebar';
+import Employee from './components/Employee';
+import Attendees from './components/Attendees';
+import Leaves from './components/Leaves';
+import Candidate from './components/Candidate';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -11,45 +15,39 @@ const App = () => {
   return (
     <Router>
       <Routes>
-       
-        <Route
-          path="/"
-          element={<Navigate to="/register" />}
-        />
+        {/* Routes that do not need Sidebar (Login and Register) */}
+        <Route path="/" element={<Navigate to="/register" />} />
+        <Route path="/register" element={<Register setIsRegisterComplete={setIsRegisterComplete} />} />
+        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
 
-        <Route
-          path="/register"
-          element={<Register setIsRegisterComplete={setIsRegisterComplete} />}
-        />
-
-        <Route
-          path="/signing"
-          element={<SigningPage />}
-        />
-
-        <Route
-          path="/login"
-          element={<Login setIsLoggedIn={setIsLoggedIn} />}
-        />
-
-       
+        {/* Routes that require Sidebar */}
         <Route
           path="/sidebar"
-          element={isLoggedIn ? <Sidebar /> : <Navigate to="/login" />}
-        />
+          element={isLoggedIn ? (
+            <div className="flex">
+              {/* Sidebar */}
+              <Sidebar />
 
-       
-        <Route
-          path="*"
-          element={<Navigate to="/register" />}
+              {/* Main Content Area */}
+              <div className="flex-1 p-6 bg-gray-100 min-h-screen ml-[230px]">
+                <Routes>
+                  <Route path="/employee" element={<Employee />} />
+                  <Route path="/attendees" element={<Attendees />} />
+                  <Route path="/leaves" element={<Leaves />} />
+                  <Route path="/candidate" element={<Candidate />} />
+                </Routes>
+              </div>
+            </div>
+          ) : (
+            <Navigate to="/login" />
+          )}
         />
+        
+        {/* Catch-all Route */}
+        
       </Routes>
     </Router>
   );
-};
-
-const SigningPage = () => {
-  return <div>Signing in...</div>;
 };
 
 export default App;
