@@ -60,13 +60,14 @@ const Sidebar = () => {
       </div>
 
       <div className="p-4 mt-auto">
-        <button 
+      <Link 
+          to="/sidebar/logout"  
           className="w-full p-2 rounded text-black ml-1 hover:bg-gray-200"
           style={{ backgroundColor: 'white', border: '1px solid #ddd' }}
         >
-          <i className="fas fa-sign-in-alt text-gray-600 mr-2"></i>
-          Log In
-        </button>
+          <i className="fas fa-sign-out-alt text-gray-600 mr-2"></i>
+          Log Out
+        </Link>
       </div>
     </div>
   );
