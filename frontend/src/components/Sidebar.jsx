@@ -26,35 +26,35 @@ const Sidebar = () => {
       <div className="flex-grow p-4">
         <ul className="space-y-4">
           <li className="flex items-center hover:bg-gray-200 p-2 rounded" style={{ marginLeft: '15px' }}>
-            <Link to="/requirement" className="text-black" style={{ color: 'rgba(164, 164, 164, 1)' }}>Requirement</Link>
+            <Link to="/sidebar/requirement" className="text-black" style={{ color: 'rgba(164, 164, 164, 1)' }}>Requirement</Link>
           </li>
           
           <li className="flex items-center hover:bg-gray-200 p-2 rounded" style={{ marginLeft: '15px' }}>
             <i className="fas fa-user text-gray-600 mr-2"></i>
-            <Link to="/candidate" className="text-black">Candidate</Link>
+            <Link to="/sidebar/candidate" className="text-black">Candidate</Link>
           </li>
           
           <li className="flex items-center hover:bg-gray-200 p-2 rounded" style={{ marginLeft: '15px' }}>
-            <Link to="/organisation" className="text-black" style={{ color: 'rgba(164, 164, 164, 1)' }}>Organisation</Link>
+            <Link to="/sidebar/organisation" className="text-black" style={{ color: 'rgba(164, 164, 164, 1)' }}>Organisation</Link>
           </li>
 
           <li className="flex items-center hover:bg-gray-200 p-2 rounded" style={{ marginLeft: '15px' }}>
             <i className="fas fa-users text-gray-600 mr-2"></i>
-            <Link to="/employee" className="text-black">Employee</Link>
+            <Link to="/sidebar/employee" className="text-black">Employee</Link>
           </li>
 
           <li className="flex items-center hover:bg-gray-200 p-2 rounded" style={{ marginLeft: '15px' }}>
             <i className="fas fa-calendar text-gray-600 mr-2"></i>
-            <Link to="/attendees" className="text-black">Attendees</Link>
+            <Link to="/sidebar/attendees" className="text-black">Attendees</Link>
           </li>
 
           <li className="flex items-center hover:bg-gray-200 p-2 rounded" style={{ marginLeft: '15px' }}>
             <i className="fas fa-folder text-gray-600 mr-2"></i>
-            <Link to="/leaves" className="text-black">Leaves</Link>
+            <Link to="/sidebar/leaves" className="text-black">Leaves</Link>
           </li>
 
           <li className="flex items-center hover:bg-gray-200 p-2 rounded" style={{ marginLeft: '15px' }}>
-            <Link to="/other" className="text-black" style={{ color: 'rgba(164, 164, 164, 1)' }}>Other</Link>
+            <Link to="/sidebar/other" className="text-black" style={{ color: 'rgba(164, 164, 164, 1)' }}>Other</Link>
           </li>
         </ul>
       </div>

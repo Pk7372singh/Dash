@@ -15,26 +15,23 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        {/* Routes that do not need Sidebar (Login and Register) */}
+     
         <Route path="/" element={<Navigate to="/register" />} />
         <Route path="/register" element={<Register setIsRegisterComplete={setIsRegisterComplete} />} />
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
 
-        {/* Routes that require Sidebar */}
         <Route
-          path="/sidebar"
+          path="/sidebar/*" 
           element={isLoggedIn ? (
             <div className="flex">
-              {/* Sidebar */}
               <Sidebar />
 
-              {/* Main Content Area */}
               <div className="flex-1 p-6 bg-gray-100 min-h-screen ml-[230px]">
                 <Routes>
-                  <Route path="/employee" element={<Employee />} />
-                  <Route path="/attendees" element={<Attendees />} />
-                  <Route path="/leaves" element={<Leaves />} />
-                  <Route path="/candidate" element={<Candidate />} />
+                  <Route path="employee" element={<Employee />} />
+                  <Route path="attendees" element={<Attendees />} />
+                  <Route path="leaves" element={<Leaves />} />
+                  <Route path="candidate" element={<Candidate />} />
                 </Routes>
               </div>
             </div>
@@ -42,9 +39,7 @@ const App = () => {
             <Navigate to="/login" />
           )}
         />
-        
-        {/* Catch-all Route */}
-        
+        <Route path="*" element={<Navigate to="/sidebar" />} />
       </Routes>
     </Router>
   );
