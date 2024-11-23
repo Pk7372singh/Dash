@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import okImage from '../assets/ok.png';  
+import okImage from '../assets/ok.png'; 
 
 const Register = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -16,7 +18,9 @@ const Register = () => {
   };
 
   return (
-    <main className="flex justify-center items-center min-h-screen bg-gray-200 py-8">
+    <main className="flex justify-center items-center min-h-screen bg-gray-200 py-8 relative">
+      <i className="fas fa-user absolute top-[20px] left-[calc(20%-10px)] text-2xl mt-20 text-gray-600 transform -translate-x-1/2">Logo</i>
+
       <div className="flex flex-row justify-center items-center bg-white rounded-lg shadow-lg overflow-hidden" style={{ width: '1200px', height: '640px' }}>
         <div className="flex items-center justify-center w-1/2 bg-white p-4">
           <form onSubmit={handleSubmit} className="bg-white p-8 border border-gray-300 rounded-lg w-full sm:w-96">
@@ -47,10 +51,10 @@ const Register = () => {
                 required
               />
             </div>
-            <div className="mb-6">
+            <div className="mb-6 relative">
               <label htmlFor="password" className="block text-gray-700 text-sm mb-2">Password</label>
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 id="password"
                 name="password"
                 value={password}
@@ -59,11 +63,21 @@ const Register = () => {
                 placeholder="Enter your password"
                 required
               />
+              <div
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3  transform -translate-y-1/2 cursor-pointer"
+              >
+                {showPassword ? (
+                  <i className="fas fa-eye-slash text-gray-600"></i> 
+                ) : (
+                  <i className="fas fa-eye text-gray-600"></i> 
+                )}
+              </div>
             </div>
-            <div className="mb-6">
+            <div className="mb-6 relative">
               <label htmlFor="confirmPassword" className="block text-gray-700 text-sm mb-2">Confirm Password</label>
               <input
-                type="password"
+                type={showConfirmPassword ? 'text' : 'password'}
                 id="confirmPassword"
                 name="confirmPassword"
                 value={confirmPassword}
@@ -72,6 +86,16 @@ const Register = () => {
                 placeholder="Confirm your password"
                 required
               />
+              <div
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-3  transform -translate-y-1/2 cursor-pointer"
+              >
+                {showConfirmPassword ? (
+                  <i className="fas fa-eye-slash text-gray-600"></i> 
+                ) : (
+                  <i className="fas fa-eye text-gray-600"></i> 
+                )}
+              </div>
             </div>
             <button type="submit" className="w-full bg-green-500 text-white p-3 rounded-md text-lg font-semibold hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">Register</button>
             <div className="text-center mt-4">

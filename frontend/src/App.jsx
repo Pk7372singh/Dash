@@ -1,44 +1,55 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Register from './components/Register';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Register from './components/Register'; // Assuming you have a Register component
 import Login from './components/Login';
 import Sidebar from './components/Sidebar';
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to manage login status
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isRegisterComplete, setIsRegisterComplete] = useState(false);
 
   return (
     <Router>
       <Routes>
-        <Route 
-          path="/" 
-          element={<Register />} 
+       
+        <Route
+          path="/"
+          element={<Navigate to="/register" />}
         />
-        <Route 
-          path="/register" 
-          element={<Register />} 
+
+        <Route
+          path="/register"
+          element={<Register setIsRegisterComplete={setIsRegisterComplete} />}
         />
-        <Route 
-          path="/login" 
-          element={<Login setIsLoggedIn={setIsLoggedIn} />} 
+
+        <Route
+          path="/signing"
+          element={<SigningPage />}
         />
-        {/* Show Sidebar only when logged in */}
-        {isLoggedIn && (
-          <Route 
-            path="/sidebar" 
-            element={
-              <div className="flex">
-                <Sidebar />
-                <div className="flex-1 p-8">
-                  <h1 className="text-3xl font-bold mb-4">Welcome to Your Dashboard</h1>
-                </div>
-              </div>
-            } 
-          />
-        )}
+
+        <Route
+          path="/login"
+          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+        />
+
+       
+        <Route
+          path="/sidebar"
+          element={isLoggedIn ? <Sidebar /> : <Navigate to="/login" />}
+        />
+
+       
+        <Route
+          path="*"
+          element={<Navigate to="/register" />}
+        />
       </Routes>
     </Router>
   );
+};
+
+const SigningPage = () => {
+  return <div>Signing in...</div>;
 };
 
 export default App;
