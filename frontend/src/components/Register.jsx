@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import okImage from '../assets/ok.png'; 
+import okImage from '../assets/ok.png';
 
 const Register = () => {
   const [fullName, setFullName] = useState('');
@@ -13,6 +13,17 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Validate that passwords match
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+
+    // Save user details to localStorage
+    localStorage.setItem('email', email);
+    localStorage.setItem('password', password);
+
     alert('Registration Successful');
     navigate('/login');
   };
@@ -25,6 +36,7 @@ const Register = () => {
         <div className="flex items-center justify-center w-1/2 bg-white p-4">
           <form onSubmit={handleSubmit} className="bg-white p-8 border border-gray-300 rounded-lg w-full sm:w-96">
             <div className="text-lg font-semibold text-gray-900 mb-6">Welcome to Dashboard</div>
+
             <div className="mb-6">
               <label htmlFor="fullName" className="block text-gray-700 text-sm mb-2">Full Name</label>
               <input
@@ -38,6 +50,7 @@ const Register = () => {
                 required
               />
             </div>
+
             <div className="mb-6">
               <label htmlFor="email" className="block text-gray-700 text-sm mb-2">Email</label>
               <input
@@ -51,6 +64,7 @@ const Register = () => {
                 required
               />
             </div>
+
             <div className="mb-6 relative">
               <label htmlFor="password" className="block text-gray-700 text-sm mb-2">Password</label>
               <input
@@ -65,15 +79,16 @@ const Register = () => {
               />
               <div
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3  transform -translate-y-1/2 cursor-pointer"
+                className="absolute right-3 transform -translate-y-1/2 cursor-pointer"
               >
                 {showPassword ? (
-                  <i className="fas fa-eye-slash text-gray-600"></i> 
+                  <i className="fas fa-eye-slash text-gray-600"></i>
                 ) : (
-                  <i className="fas fa-eye text-gray-600"></i> 
+                  <i className="fas fa-eye text-gray-600"></i>
                 )}
               </div>
             </div>
+
             <div className="mb-6 relative">
               <label htmlFor="confirmPassword" className="block text-gray-700 text-sm mb-2">Confirm Password</label>
               <input
@@ -88,16 +103,20 @@ const Register = () => {
               />
               <div
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-3  transform -translate-y-1/2 cursor-pointer"
+                className="absolute right-3 transform -translate-y-1/2 cursor-pointer"
               >
                 {showConfirmPassword ? (
-                  <i className="fas fa-eye-slash text-gray-600"></i> 
+                  <i className="fas fa-eye-slash text-gray-600"></i>
                 ) : (
-                  <i className="fas fa-eye text-gray-600"></i> 
+                  <i className="fas fa-eye text-gray-600"></i>
                 )}
               </div>
             </div>
-            <button type="submit" className="w-full bg-green-500 text-white p-3 rounded-md text-lg font-semibold hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">Register</button>
+
+            <button type="submit" className="w-full bg-green-500 text-white p-3 rounded-md text-lg font-semibold hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+              Register
+            </button>
+
             <div className="text-center mt-4">
               <span className="text-sm text-gray-600">Already have an account? </span>
               <button
@@ -110,6 +129,7 @@ const Register = () => {
             </div>
           </form>
         </div>
+        
         <div
           className="flex flex-col items-center justify-center p-8"
           style={{

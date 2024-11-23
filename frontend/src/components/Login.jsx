@@ -1,18 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import okImage from '../assets/ok.png'; 
+import okImage from '../assets/ok.png';
 
 const Login = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false); 
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if the session has expired
+    const loginTimestamp = localStorage.getItem('loginTimestamp');
+    if (loginTimestamp) {
+      const timeElapsed = Date.now() - parseInt(loginTimestamp, 10);
+      // 2 hours in milliseconds
+      if (timeElapsed > 2 * 60 * 60 * 1000) {
+        logout();  // If 2 hours have passed, log out the user
+      }
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Login Successful');
-    setIsLoggedIn(true);
-    navigate('/sidebar');
+
+    // Get stored email and password from localStorage
+    const registeredEmail = localStorage.getItem('email');
+    const registeredPassword = localStorage.getItem('password');
+
+    // Validate the entered email and password
+    if (email === registeredEmail && password === registeredPassword) {
+      alert('Login Successful');
+      localStorage.setItem('loginTimestamp', Date.now().toString()); // Set login timestamp
+      setIsLoggedIn(true);
+      navigate('/sidebar');
+    } else {
+      alert('Invalid email or password');
+    }
+  };
+
+  const logout = () => {
+    localStorage.removeItem('email');
+    localStorage.removeItem('password');
+    localStorage.removeItem('loginTimestamp');
+    alert('Session expired, please log in again');
+    navigate('/login');
   };
 
   return (
@@ -39,34 +70,32 @@ const Login = ({ setIsLoggedIn }) => {
               />
             </div>
 
-            <div className="mb-6">
+            <div className="mb-6 relative">
               <label htmlFor="password" className="block text-gray-700 text-sm mb-2">Password</label>
-              <div className="relative">
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  id="password"
-                  name="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full p-3 text-sm border border-gray-300 rounded-md pr-12"
-                  placeholder="Enter your password"
-                  required
-                />
-                <span
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
-                  onClick={() => setShowPassword(!showPassword)} 
-                >
-                  {showPassword ? (
-                    <i className="fas fa-eye-slash text-gray-600" /> 
-                  ) : (
-                    <i className="fas fa-eye text-gray-600" /> 
-                  )}
-                </span>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-3 text-sm border border-gray-300 rounded-md"
+                placeholder="Enter your password"
+                required
+              />
+              <div
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 transform -translate-y-1/2 cursor-pointer"
+              >
+                {showPassword ? (
+                  <i className="fas fa-eye-slash text-gray-600"></i>
+                ) : (
+                  <i className="fas fa-eye text-gray-600"></i>
+                )}
               </div>
             </div>
 
             <button type="submit" className="w-full bg-green-500 text-white p-3 rounded-md text-lg font-semibold hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
-              Login Now
+              Login
             </button>
 
             <div className="text-center mt-4">
@@ -76,20 +105,26 @@ const Login = ({ setIsLoggedIn }) => {
                 className="text-sm text-blue-500 hover:underline focus:outline-none"
                 onClick={() => navigate('/register')}
               >
-               Register
+                Register
               </button>
             </div>
           </form>
         </div>
 
-        {/* Right side container */}
-        <div className="flex flex-col items-center justify-center p-8" style={{ width: '50%', height: '100%', borderRadius: '0px 20px 20px 0px', background: 'linear-gradient(180deg, #783FED 0%, #442487 100%)' }}>
+        <div
+          className="flex flex-col items-center justify-center p-8"
+          style={{
+            width: '50%',
+            height: '100%',
+            borderRadius: '0px 20px 20px 0px',
+            background: 'linear-gradient(180deg, #783FED 0%, #442487 100%)',
+          }}
+        >
           <img src={okImage} alt="OK" className="mb-6" style={{ margin: '10px 10px 0 10px' }} />
           <div className="text-center">
-            <h1 className="text-3xl font-bold mb-4 text-white">Welcome to Our Service</h1>
+            <h1 className="text-3xl font-bold mb-4 text-white">Welcome Back</h1>
             <p className="text-lg text-white">
-              Our platform offers a comprehensive suite of tools designed to help you manage your tasks efficiently.
-              Whether you are organizing personal projects or collaborating with a team, our service ensures seamless integration and user-friendly experience.
+              Please login to access your dashboard and continue using our services.
             </p>
           </div>
         </div>
