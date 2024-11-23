@@ -26,7 +26,7 @@ const Logout = ({ onClose }) => {
           className="text-2xl font-semibold text-white mb-6 p-2"
           style={{
             background: 'linear-gradient(180deg, #783FED 0%, #442487 100%)',
-            width: '1280px',
+            width: '1200px',
             height: '54px',
             borderRadius: '20px 20px 20px 20px',
             gap: '0px',
