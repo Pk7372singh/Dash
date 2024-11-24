@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import DashboardTable from "./DashboardTable";
 import EmployeePage from "./EmployeeTable";
 
@@ -10,8 +9,8 @@ const Employee = () => {
     email: "",
     department: "",
     phoneNumber: "",
-    experience: "",
-    resume: null,
+    position: "",
+    joiningDate: "",  // Updated to track joining date
   });
 
   const handleInputChange = (e) => {
@@ -19,14 +18,6 @@ const Employee = () => {
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
-    }));
-  };
-
-  const handleFileChange = (e) => {
-    const { name, files } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: files[0],
     }));
   };
 
@@ -39,9 +30,9 @@ const Employee = () => {
     { header: "Profile", key: "profile", dataKey: "name" },
     { header: "Email Address", key: "text", dataKey: "email" },
     { header: "Phone Number", key: "text", dataKey: "phone" },
-    { header: "Position", key: "text", dataKey: "position" },
+    { header: "Position", key: "text", dataKey: "position" },  // Changed
     { header: "Department", key: "text", dataKey: "department" },
-    { header: "Date of Joining", key: "text", dataKey: "joiningDate" },
+    { header: "Date of Joining", key: "text", dataKey: "joiningDate" },  // Changed
   ];
 
   const employeeData = [
@@ -61,38 +52,7 @@ const Employee = () => {
       department: "Designer",
       joiningDate: "09/15/17",
     },
-    {
-      name: "Ronald Richards",
-      email: "debra.holt@example.com",
-      phone: "(907) 555-0101",
-      position: "Senior designer",
-      department: "Backend Development",
-      joiningDate: "12/04/17",
-    },
-    {
-      name: "Theresa Webb",
-      email: "alma.lawson@example.com",
-      phone: "(303) 555-0105",
-      position: "Junior Developer",
-      department: "Employee Name",
-      joiningDate: "11/07/16",
-    },
-    {
-      name: "Cody Fisher",
-      email: "tanya.hill@example.com",
-      phone: "(302) 555-0107",
-      position: "Full Time",
-      department: "Designer",
-      joiningDate: "06/19/14",
-    },
-    {
-      name: "Devon Lane",
-      email: "nevaeh.simmons@example.com",
-      phone: "(319) 555-0115",
-      position: "Full Time",
-      department: "Designer",
-      joiningDate: "05/30/14",
-    },
+    // Add more employee data as needed...
   ];
 
   return (
@@ -182,7 +142,7 @@ const Employee = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full p-3 mt-5  border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 mt-5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter email address"
                     required
                   />
@@ -208,31 +168,38 @@ const Employee = () => {
                     name="phoneNumber"
                     value={formData.phoneNumber}
                     onChange={handleInputChange}
-                    className="w-full p-3 mt-5  border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 mt-5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter phone number"
                     required
                   />
                 </div>
 
                 <div>
-                  <input
-                    type="number"
-                    id="experience"
-                    name="experience"
-                    value={formData.experience}
+                  <select
+                    id="position"
+                    name="position"
+                    value={formData.position}
                     onChange={handleInputChange}
-                    className="w-full p-3 mt-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Experience"
+                    className="w-full p-3 mt-5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
-                  />
+                  >
+                    
+                    <option value="Team Lead">Team Lead</option>
+                    <option value="Junior Developer">Junior Developer</option>
+                    <option value="Senior Developer">Senior Developer</option>
+                    <option value="Intern">Intern</option>
+                    <option value="Designer">Designer</option>
+                    <option value="Backend Developer">Backend Developer</option>
+                  </select>
                 </div>
 
                 <div>
                   <input
-                    type="file"
-                    id="resume"
-                    name="resume"
-                    onChange={handleFileChange}
+                    type="date"
+                    id="joiningDate"
+                    name="joiningDate"
+                    value={formData.joiningDate}
+                    onChange={handleInputChange}
                     className="w-full mt-0 p-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                   />

@@ -110,7 +110,7 @@ const Leaves = () => {
                     required
                   >
                     <option value="" disabled>
-                      Select Leave Type
+                      Desiganation
                     </option>
                     <option value="Sick Leave">Sick Leave</option>
                     <option value="Casual Leave">Casual Leave</option>

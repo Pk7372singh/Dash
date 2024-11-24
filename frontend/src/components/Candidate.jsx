@@ -40,7 +40,8 @@ const Candidate = () => {
     { header: 'Phone Number', key: 'text', dataKey: 'phone' },
     { header: 'Position', key: 'text', dataKey: 'position' },
     { header: 'Status', key: 'status', dataKey: 'status' },
-    { header: 'Experience', key: 'text', dataKey: 'experience' }
+    { header: 'Experience', key: 'text', dataKey: 'experience' },
+    { header: 'Resume', key: 'text', dataKey: 'resume' }, // Added Resume column
   ];
 
   const candidatesData = [
@@ -51,7 +52,8 @@ const Candidate = () => {
       phone: '(704) 555-0127',
       position: 'Designer Intern',
       status: 'New',
-      experience: 'Fresher'
+      experience: 'Fresher',
+      resume: 'link_to_resume.pdf', // Add a resume link
     },
     // Add more candidate data here
   ];
@@ -70,29 +72,23 @@ const Candidate = () => {
         </div>
 
         <div className="flex space-x-4 mb-4">
-          
           <div className="p-4 bg-white-100 rounded-lg w-1/4 h-24">
-  <select
-    className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-  >
-    <option value="all">All</option>
-    <option value="option1">Option 1</option>
-    <option value="option2">Option 2</option>
-    <option value="option3">Option 3</option>
-  </select>
-</div>
+            <select className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="all">All</option>
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+              <option value="option3">Option 3</option>
+            </select>
+          </div>
 
-<div className="p-4 bg-white-100 rounded-lg w-1/4 h-24">
-  <select
-    className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-  >
-    <option value="all">All</option>
-    <option value="option1">Option 1</option>
-    <option value="option2">Option 2</option>
-    <option value="option3">Option 3</option>
-  </select>
-</div>
-
+          <div className="p-4 bg-white-100 rounded-lg w-1/4 h-24">
+            <select className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="all">All</option>
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+              <option value="option3">Option 3</option>
+            </select>
+          </div>
 
           <div className="p-4 bg-white-100 rounded-lg w-1/4 h-24">
             <input
@@ -115,7 +111,6 @@ const Candidate = () => {
           </div>
         </div>
 
-        
         {formVisible && (
           <div className="mt-6">
             <h2
@@ -129,9 +124,7 @@ const Candidate = () => {
 
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-2 gap-6">
-                
                 <div>
-              
                   <input
                     type="text"
                     id="fullName"
@@ -144,9 +137,7 @@ const Candidate = () => {
                   />
                 </div>
 
-              
                 <div>
-                 
                   <input
                     type="email"
                     id="email"
@@ -160,7 +151,6 @@ const Candidate = () => {
                 </div>
 
                 <div>
-                  
                   <input
                     type="text"
                     id="department"
@@ -173,9 +163,7 @@ const Candidate = () => {
                   />
                 </div>
 
-              
                 <div>
-                  
                   <input
                     type="tel"
                     id="phoneNumber"
@@ -188,9 +176,7 @@ const Candidate = () => {
                   />
                 </div>
 
-               
                 <div>
-                 
                   <input
                     type="number"
                     id="experience"
@@ -204,7 +190,6 @@ const Candidate = () => {
                 </div>
 
                 <div>
-                  
                   <input
                     type="file"
                     id="resume"
@@ -235,27 +220,27 @@ const Candidate = () => {
                   </label>
                 </div>
 
-               
                 <div className="col-span-2 text-center mt-6">
-  <button
-    type="submit"
-    className="w-20 py-2  text-gray font-semibold rounded-lg text-sm"
-    style={{
-      background: 'rgba(164, 164, 164, 1)',
-    }}
-  >
-    Save 
-  </button>
-</div>
-
+                  <button
+                    type="submit"
+                    className="w-20 py-2  text-gray font-semibold rounded-lg text-sm"
+                    style={{
+                      background: 'rgba(164, 164, 164, 1)',
+                    }}
+                  >
+                    Save
+                  </button>
+                </div>
               </div>
             </form>
           </div>
         )}
+
         <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Candidates</h1>
-      <DashboardTable columns={columns} data={candidatesData} type="candidates" />
-    </div>
+          <h1 className="font-medium text-2xl">Candidates List</h1>
+        </div>
+
+        <DashboardTable columns={columns} data={candidatesData} />
       </div>
     </div>
   );
