@@ -8,12 +8,15 @@ const candidateRoutes = require('./routes/candidateRoutes');
 const employeeRoutes = require('./routes/employeeRoutes');
 const leaveRoutes = require('./routes/leaveRoutes');
 const attendanceRoutes = require('./routes/attendanceRoutes');
+const cors = require('cors');
+
 
 dotenv.config();
 connectDB();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.use('/api/auth', authRoutes);
 

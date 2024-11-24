@@ -10,7 +10,7 @@ const Employee = () => {
     department: "",
     phoneNumber: "",
     position: "",
-    joiningDate: "",  // Updated to track joining date
+    joiningDate: "",  
   });
 
   const handleInputChange = (e) => {
@@ -30,9 +30,9 @@ const Employee = () => {
     { header: "Profile", key: "profile", dataKey: "name" },
     { header: "Email Address", key: "text", dataKey: "email" },
     { header: "Phone Number", key: "text", dataKey: "phone" },
-    { header: "Position", key: "text", dataKey: "position" },  // Changed
+    { header: "Position", key: "text", dataKey: "position" },
     { header: "Department", key: "text", dataKey: "department" },
-    { header: "Date of Joining", key: "text", dataKey: "joiningDate" },  // Changed
+    { header: "Date of Joining", key: "text", dataKey: "joiningDate" },
   ];
 
   const employeeData = [
@@ -52,7 +52,6 @@ const Employee = () => {
       department: "Designer",
       joiningDate: "09/15/17",
     },
-    // Add more employee data as needed...
   ];
 
   return (
@@ -122,68 +121,82 @@ const Employee = () => {
 
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-2 gap-6">
-                <div>
+                <div className="relative">
+                  <label htmlFor="fullName" className="text-sm font-medium text-gray-700">
+                    Full Name <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="text"
                     id="fullName"
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleInputChange}
-                    className="w-full p-3 mt-5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 mt-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter full name"
                     required
                   />
                 </div>
 
-                <div>
+                <div className="relative">
+                  <label htmlFor="email" className="text-sm font-medium text-gray-700">
+                    Email Address <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full p-3 mt-5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 mt-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter email address"
                     required
                   />
                 </div>
 
-                <div>
+                <div className="relative">
+                  <label htmlFor="department" className="text-sm font-medium text-gray-700">
+                    Department <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="text"
                     id="department"
                     name="department"
                     value={formData.department}
                     onChange={handleInputChange}
-                    className="w-full p-3 mt-5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 mt-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Department"
                     required
                   />
                 </div>
 
-                <div>
+                <div className="relative">
+                  <label htmlFor="phoneNumber" className="text-sm font-medium text-gray-700">
+                    Phone Number <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="tel"
                     id="phoneNumber"
                     name="phoneNumber"
                     value={formData.phoneNumber}
                     onChange={handleInputChange}
-                    className="w-full p-3 mt-5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 mt-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter phone number"
                     required
                   />
                 </div>
 
-                <div>
+                <div className="relative">
+                  <label htmlFor="position" className="text-sm font-medium text-gray-700">
+                    Position <span className="text-red-500">*</span>
+                  </label>
                   <select
                     id="position"
                     name="position"
                     value={formData.position}
                     onChange={handleInputChange}
-                    className="w-full p-3 mt-5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 mt-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                   >
-                    
                     <option value="Team Lead">Team Lead</option>
                     <option value="Junior Developer">Junior Developer</option>
                     <option value="Senior Developer">Senior Developer</option>
@@ -193,24 +206,27 @@ const Employee = () => {
                   </select>
                 </div>
 
-                <div>
+                <div className="relative">
+                  <label htmlFor="joiningDate" className="text-sm font-medium text-gray-700">
+                    Joining Date <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="date"
                     id="joiningDate"
                     name="joiningDate"
                     value={formData.joiningDate}
                     onChange={handleInputChange}
-                    className="w-full mt-0 p-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full mt-2 p-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                   />
                 </div>
 
-                <div className="col-span-2 text-center mt-6">
+                <div className="col-span-2 text-center mt-6 mb-4">
                   <button
                     type="submit"
-                    className="w-20 py-2 text-gray font-semibold rounded-lg text-sm"
+                    className="w-20 py-2  text-gray font-semibold rounded-lg text-sm"
                     style={{
-                      background: "rgba(164, 164, 164, 1)",
+                      background: 'rgba(164, 164, 164, 1)',
                     }}
                   >
                     Save
@@ -221,7 +237,7 @@ const Employee = () => {
           </div>
         )}
 
-        <EmployeePage />
+        <DashboardTable columns={columns} data={employeeData} />
       </div>
     </div>
   );

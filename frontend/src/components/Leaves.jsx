@@ -7,7 +7,7 @@ const Leaves = () => {
     employeeName: "",
     leaveType: "",
     startDate: "",
-    endDate: "",
+    attachment: "",
     reason: "",
   });
 
@@ -88,29 +88,35 @@ const Leaves = () => {
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-2 gap-6">
                 <div>
+                  <label className="text-sm font-semibold text-gray-700">
+                    Employee Name <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="text"
                     id="employeeName"
                     name="employeeName"
                     value={formData.employeeName}
                     onChange={handleInputChange}
-                    className="w-full p-3 mt-5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 mt-1 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Employee Name"
                     required
                   />
                 </div>
 
                 <div>
+                  <label className="text-sm font-semibold text-gray-700">
+                    Leave Type <span className="text-red-500">*</span>
+                  </label>
                   <select
                     id="leaveType"
                     name="leaveType"
                     value={formData.leaveType}
                     onChange={handleInputChange}
-                    className="w-full p-3 mt-5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 mt-1 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                   >
                     <option value="" disabled>
-                      Desiganation
+                      Designation
                     </option>
                     <option value="Sick Leave">Sick Leave</option>
                     <option value="Casual Leave">Casual Leave</option>
@@ -120,38 +126,52 @@ const Leaves = () => {
                 </div>
 
                 <div>
+                  <label className="text-sm font-semibold text-gray-700">
+                    Start Date <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="date"
                     id="startDate"
                     name="startDate"
                     value={formData.startDate}
                     onChange={handleInputChange}
-                    className="w-full p-3 mt-5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Start Date"
+                    className="w-full p-3 mt-1 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                   />
                 </div>
 
                 <div>
-                  <input
-                    type="date"
-                    id="endDate"
-                    name="endDate"
-                    value={formData.endDate}
-                    onChange={handleInputChange}
-                    className="w-full p-3 mt-5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="End Date"
-                    required
-                  />
+                  <label className="text-sm font-semibold text-gray-700">
+                    Attachment <span className="text-red-500">*</span>
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="file"
+                      id="attachment"
+                      name="attachment"
+                      onChange={handleInputChange}
+                      className="w-full p-3 mt-1 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
+                    />
+                    <label
+                      htmlFor="attachment"
+                      className="absolute inset-y-0 right-3 flex items-center"
+                    >
+                      <i className="fas fa-paperclip text-gray-500"></i>
+                    </label>
+                  </div>
                 </div>
 
                 <div className="col-span-2">
+                  <label className="text-sm font-semibold text-gray-700">
+                    Reason for Leave <span className="text-red-500">*</span>
+                  </label>
                   <textarea
                     id="reason"
                     name="reason"
                     value={formData.reason}
                     onChange={handleInputChange}
-                    className="w-full p-3 mt-5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 mt-1 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Reason for Leave"
                     required
                   />

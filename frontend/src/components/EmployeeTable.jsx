@@ -63,7 +63,7 @@ const EmployeePage = () => {
     }
   ];
 
-  // Custom action menu component
+  
   const ActionMenu = () => (
     <div className="relative group">
       <button className="text-gray-400 hover:text-gray-600">
@@ -99,19 +99,5 @@ const EmployeePage = () => {
   );
 };
 
-// Modified DashboardTable props type to include the new features
-// DashboardTable.propTypes = {
-//   columns: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       header: PropTypes.string.isRequired,
-//       key: PropTypes.string.isRequired,
-//       dataKey: PropTypes.string.isRequired,
-//     })
-//   ).isRequired,
-//   data: PropTypes.arrayOf(PropTypes.object).isRequired,
-//   type: PropTypes.string,
-//   renderActions: PropTypes.func,
-//   showCheckbox: PropTypes.bool
-// };
 
 export default EmployeePage;

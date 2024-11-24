@@ -41,7 +41,7 @@ const Candidate = () => {
     { header: 'Position', key: 'text', dataKey: 'position' },
     { header: 'Status', key: 'status', dataKey: 'status' },
     { header: 'Experience', key: 'text', dataKey: 'experience' },
-    { header: 'Resume', key: 'text', dataKey: 'resume' }, // Added Resume column
+    { header: 'Resume', key: 'text', dataKey: 'resume' }, 
   ];
 
   const candidatesData = [
@@ -53,7 +53,7 @@ const Candidate = () => {
       position: 'Designer Intern',
       status: 'New',
       experience: 'Fresher',
-      resume: 'link_to_resume.pdf', // Add a resume link
+      resume: 'link_to_resume.pdf', 
     },
     // Add more candidate data here
   ];
@@ -125,71 +125,89 @@ const Candidate = () => {
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-2 gap-6">
                 <div>
+                  <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
+                    Full Name <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="text"
                     id="fullName"
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleInputChange}
-                    className="w-full p-3 mt-5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 mt-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter full name"
                     required
                   />
                 </div>
 
                 <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                    Email <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full p-3 mt-5  border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 mt-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter email address"
                     required
                   />
                 </div>
 
                 <div>
+                  <label htmlFor="department" className="block text-sm font-medium text-gray-700">
+                    Department <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="text"
                     id="department"
                     name="department"
                     value={formData.department}
                     onChange={handleInputChange}
-                    className="w-full p-3 mt-5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 mt-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Department"
                     required
                   />
                 </div>
 
                 <div>
+                  <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
+                    Phone Number <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="tel"
                     id="phoneNumber"
                     name="phoneNumber"
                     value={formData.phoneNumber}
                     onChange={handleInputChange}
-                    className="w-full p-3 mt-5  border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 mt-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter phone number"
                     required
                   />
                 </div>
 
                 <div>
+                  <label htmlFor="experience" className="block text-sm font-medium text-gray-700">
+                    Experience <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="number"
                     id="experience"
                     name="experience"
                     value={formData.experience}
                     onChange={handleInputChange}
-                    className="w-full p-3 mt-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 mt-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Experience"
                     required
                   />
                 </div>
 
                 <div>
+                  <label htmlFor="resume" className="block text-sm font-medium text-gray-700">
+                    Resume <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="file"
                     id="resume"
@@ -200,7 +218,7 @@ const Candidate = () => {
                   />
                 </div>
 
-                {/* Checkbox Section */}
+              
                 <div className="col-span-2 mt-4 text-left">
                   <input
                     type="checkbox"
@@ -209,18 +227,12 @@ const Candidate = () => {
                     className="mr-2"
                     required
                   />
-                  <label
-                    htmlFor="declaration"
-                    className="text-sm"
-                    style={{
-                      color: 'rgba(164, 164, 164, 1)',
-                    }}
-                  >
-                    I hereby declare that the above information is true to the best of my knowledge and belief
+                  <label htmlFor="declaration" className="text-sm font-medium text-gray-700">
+                    I declare that the above information is true and accurate.
                   </label>
                 </div>
 
-                <div className="col-span-2 text-center mt-6">
+                 <div className="col-span-2 text-center mt-6">
                   <button
                     type="submit"
                     className="w-20 py-2  text-gray font-semibold rounded-lg text-sm"
@@ -235,13 +247,10 @@ const Candidate = () => {
             </form>
           </div>
         )}
-
-        <div className="p-6">
-          <h1 className="font-medium text-2xl">Candidates List</h1>
-        </div>
-
-        <DashboardTable columns={columns} data={candidatesData} />
       </div>
+
+      
+      <DashboardTable columns={columns} data={candidatesData} />
     </div>
   );
 };
