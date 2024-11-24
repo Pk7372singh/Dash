@@ -83,7 +83,7 @@ const Login = ({ setIsLoggedIn }) => {
               />
               <div
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 transform -translate-y-1/2 cursor-pointer"
+                className="absolute right-3 transform -translate-y-1/2 cursor-pointer -mt-6"
               >
                 {showPassword ? (
                   <i className="fas fa-eye-slash text-gray-600"></i>

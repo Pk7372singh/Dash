@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import LeavePage from "./LeavePage";
 
 const Leaves = () => {
   const [formVisible, setFormVisible] = useState(false);
   const [formData, setFormData] = useState({
-    employeeName: '',
-    leaveType: '',
-    startDate: '',
-    endDate: '',
-    reason: '',
+    employeeName: "",
+    leaveType: "",
+    startDate: "",
+    endDate: "",
+    reason: "",
   });
 
   const handleInputChange = (e) => {
@@ -20,7 +21,7 @@ const Leaves = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted', formData);
+    console.log("Form submitted", formData);
   };
 
   return (
@@ -35,14 +36,13 @@ const Leaves = () => {
           </div>
         </div>
 
-       
         <div className="flex space-x-4 mb-4">
           <div className="p-4 bg-white-100 rounded-lg w-1/4 h-24">
-            <input
-              type="text"
-              placeholder="All"
-              className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+            <select className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="all">Approved</option>
+              <option value="option1">Reject</option>
+              <option value="option2">Pending</option>
+            </select>
           </div>
 
           <div className="p-4 bg-white-100 rounded-lg w-1/4 h-24">
@@ -66,7 +66,7 @@ const Leaves = () => {
               onClick={() => setFormVisible(true)}
               className="w-full py-2 text-white font-semibold rounded-lg text-sm hover:bg-gradient-to-b hover:from-purple-700 hover:to-purple-500"
               style={{
-                background: 'linear-gradient(180deg, #783FED 0%, #442487 100%)',
+                background: "linear-gradient(180deg, #783FED 0%, #442487 100%)",
               }}
             >
               Add New Leave
@@ -74,13 +74,12 @@ const Leaves = () => {
           </div>
         </div>
 
-       
         {formVisible && (
           <div className="mt-6">
             <h2
               className="w-full py-3 text-white font-semibold rounded-lg text-sm text-center"
               style={{
-                background: 'linear-gradient(180deg, #783FED 0%, #442487 100%)',
+                background: "linear-gradient(180deg, #783FED 0%, #442487 100%)",
               }}
             >
               Add New Leave
@@ -88,7 +87,6 @@ const Leaves = () => {
 
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-2 gap-6">
-
                 <div>
                   <input
                     type="text"
@@ -111,7 +109,9 @@ const Leaves = () => {
                     className="w-full p-3 mt-5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                   >
-                    <option value="" disabled>Select Leave Type</option>
+                    <option value="" disabled>
+                      Select Leave Type
+                    </option>
                     <option value="Sick Leave">Sick Leave</option>
                     <option value="Casual Leave">Casual Leave</option>
                     <option value="Maternity Leave">Maternity Leave</option>
@@ -157,24 +157,22 @@ const Leaves = () => {
                   />
                 </div>
 
-                
-
                 <div className="col-span-2 text-center mt-6">
                   <button
                     type="submit"
                     className="w-20 py-2 text-gray font-semibold rounded-lg text-sm"
                     style={{
-                      background: 'rgba(164, 164, 164, 1)',
+                      background: "rgba(164, 164, 164, 1)",
                     }}
                   >
                     Save
                   </button>
                 </div>
-
               </div>
             </form>
           </div>
         )}
+        <LeavePage />
       </div>
     </div>
   );

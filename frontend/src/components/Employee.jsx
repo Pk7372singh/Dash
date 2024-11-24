@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+
+import DashboardTable from "./DashboardTable";
+import EmployeePage from "./EmployeeTable";
 
 const Employee = () => {
   const [formVisible, setFormVisible] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    department: '',
-    phoneNumber: '',
-    experience: '',
+    fullName: "",
+    email: "",
+    department: "",
+    phoneNumber: "",
+    experience: "",
     resume: null,
   });
 
@@ -29,14 +32,76 @@ const Employee = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted', formData);
+    console.log("Form submitted", formData);
   };
+
+  const columns = [
+    { header: "Profile", key: "profile", dataKey: "name" },
+    { header: "Email Address", key: "text", dataKey: "email" },
+    { header: "Phone Number", key: "text", dataKey: "phone" },
+    { header: "Position", key: "text", dataKey: "position" },
+    { header: "Department", key: "text", dataKey: "department" },
+    { header: "Date of Joining", key: "text", dataKey: "joiningDate" },
+  ];
+
+  const employeeData = [
+    {
+      name: "Darlene Robertson",
+      email: "michael.mitc@example.com",
+      phone: "(603) 555-0123",
+      position: "Team Lead",
+      department: "Backend Development",
+      joiningDate: "10/06/17",
+    },
+    {
+      name: "Leslie Alexander",
+      email: "felicia.reid@example.com",
+      phone: "(229) 555-0109",
+      position: "Intern",
+      department: "Designer",
+      joiningDate: "09/15/17",
+    },
+    {
+      name: "Ronald Richards",
+      email: "debra.holt@example.com",
+      phone: "(907) 555-0101",
+      position: "Senior designer",
+      department: "Backend Development",
+      joiningDate: "12/04/17",
+    },
+    {
+      name: "Theresa Webb",
+      email: "alma.lawson@example.com",
+      phone: "(303) 555-0105",
+      position: "Junior Developer",
+      department: "Employee Name",
+      joiningDate: "11/07/16",
+    },
+    {
+      name: "Cody Fisher",
+      email: "tanya.hill@example.com",
+      phone: "(302) 555-0107",
+      position: "Full Time",
+      department: "Designer",
+      joiningDate: "06/19/14",
+    },
+    {
+      name: "Devon Lane",
+      email: "nevaeh.simmons@example.com",
+      phone: "(319) 555-0115",
+      position: "Full Time",
+      department: "Designer",
+      joiningDate: "05/30/14",
+    },
+  ];
 
   return (
     <div className="bg-white min-h-screen">
       <div className="p-6 bg-white shadow-md rounded-lg">
         <div className="flex justify-between items-center mb-4">
-          <h1 className="text-2xl font-semibold text-gray-800">Employee List</h1>
+          <h1 className="text-2xl font-semibold text-gray-800">
+            Employee List
+          </h1>
           <div className="flex gap-5">
             <i className="fas fa-bell text-gray-700 text-xl cursor-pointer hover:text-gray-900"></i>
             <i className="fas fa-envelope text-gray-700 text-xl cursor-pointer hover:text-gray-900"></i>
@@ -47,11 +112,12 @@ const Employee = () => {
         {/* Filter/Search Section */}
         <div className="flex space-x-4 mb-4">
           <div className="p-4 bg-white-100 rounded-lg w-1/4 h-24">
-            <input
-              type="text"
-              placeholder="All"
-              className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+            <select className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="all">All</option>
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+              <option value="option3">Option 3</option>
+            </select>
           </div>
 
           <div className="p-4 bg-white-100 rounded-lg w-1/4 h-24">
@@ -75,7 +141,7 @@ const Employee = () => {
               onClick={() => setFormVisible(true)}
               className="w-full py-2 text-white font-semibold rounded-lg text-sm hover:bg-gradient-to-b hover:from-purple-700 hover:to-purple-500"
               style={{
-                background: 'linear-gradient(180deg, #783FED 0%, #442487 100%)',
+                background: "linear-gradient(180deg, #783FED 0%, #442487 100%)",
               }}
             >
               Add New Employee
@@ -83,13 +149,12 @@ const Employee = () => {
           </div>
         </div>
 
-       
         {formVisible && (
           <div className="mt-6">
             <h2
               className="w-full py-3 text-white font-semibold rounded-lg text-sm text-center"
               style={{
-                background: 'linear-gradient(180deg, #783FED 0%, #442487 100%)',
+                background: "linear-gradient(180deg, #783FED 0%, #442487 100%)",
               }}
             >
               Add New Employee
@@ -97,7 +162,6 @@ const Employee = () => {
 
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-2 gap-6">
-
                 <div>
                   <input
                     type="text"
@@ -174,24 +238,23 @@ const Employee = () => {
                   />
                 </div>
 
-                
-
                 <div className="col-span-2 text-center mt-6">
                   <button
                     type="submit"
                     className="w-20 py-2 text-gray font-semibold rounded-lg text-sm"
                     style={{
-                      background: 'rgba(164, 164, 164, 1)',
+                      background: "rgba(164, 164, 164, 1)",
                     }}
                   >
                     Save
                   </button>
                 </div>
-
               </div>
             </form>
           </div>
         )}
+
+        <EmployeePage />
       </div>
     </div>
   );

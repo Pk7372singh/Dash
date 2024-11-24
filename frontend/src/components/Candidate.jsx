@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DashboardTable from './DashboardTable';
 
 const Candidate = () => {
   const [formVisible, setFormVisible] = useState(false);
@@ -32,6 +33,29 @@ const Candidate = () => {
     console.log('Form submitted', formData);
   };
 
+  const columns = [
+    { header: 'Sr no.', key: 'text', dataKey: 'srNo' },
+    { header: 'Candidates Name', key: 'text', dataKey: 'name' },
+    { header: 'Email Address', key: 'text', dataKey: 'email' },
+    { header: 'Phone Number', key: 'text', dataKey: 'phone' },
+    { header: 'Position', key: 'text', dataKey: 'position' },
+    { header: 'Status', key: 'status', dataKey: 'status' },
+    { header: 'Experience', key: 'text', dataKey: 'experience' }
+  ];
+
+  const candidatesData = [
+    {
+      srNo: '01',
+      name: 'Floyd Miles',
+      email: 'sara.cruz@example.com',
+      phone: '(704) 555-0127',
+      position: 'Designer Intern',
+      status: 'New',
+      experience: 'Fresher'
+    },
+    // Add more candidate data here
+  ];
+
   return (
     <div className="bg-white min-h-screen">
       <div className="p-6 bg-white shadow-md rounded-lg">
@@ -46,21 +70,29 @@ const Candidate = () => {
         </div>
 
         <div className="flex space-x-4 mb-4">
+          
           <div className="p-4 bg-white-100 rounded-lg w-1/4 h-24">
-            <input
-              type="text"
-              placeholder="All"
-              className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
+  <select
+    className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+  >
+    <option value="all">All</option>
+    <option value="option1">Option 1</option>
+    <option value="option2">Option 2</option>
+    <option value="option3">Option 3</option>
+  </select>
+</div>
 
-          <div className="p-4 bg-white-100 rounded-lg w-1/4 h-24">
-            <input
-              type="text"
-              placeholder="All"
-              className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
+<div className="p-4 bg-white-100 rounded-lg w-1/4 h-24">
+  <select
+    className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+  >
+    <option value="all">All</option>
+    <option value="option1">Option 1</option>
+    <option value="option2">Option 2</option>
+    <option value="option3">Option 3</option>
+  </select>
+</div>
+
 
           <div className="p-4 bg-white-100 rounded-lg w-1/4 h-24">
             <input
@@ -220,6 +252,10 @@ const Candidate = () => {
             </form>
           </div>
         )}
+        <div className="p-6">
+      <h1 className="text-2xl font-bold mb-6">Candidates</h1>
+      <DashboardTable columns={columns} data={candidatesData} type="candidates" />
+    </div>
       </div>
     </div>
   );

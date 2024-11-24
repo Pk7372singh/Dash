@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import DashboardTable from "./DashboardTable";
 
 const Attendees = () => {
   const [formVisible, setFormVisible] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    department: '',
-    phoneNumber: '',
-    experience: '',
+    fullName: "",
+    email: "",
+    department: "",
+    phoneNumber: "",
+    experience: "",
     resume: null,
   });
 
@@ -29,14 +30,35 @@ const Attendees = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted', formData);
+    console.log("Form submitted", formData);
   };
+
+  const columns = [
+    { header: "Profile", key: "profile", dataKey: "name" },
+    { header: "Designation", key: "text", dataKey: "designation" },
+    { header: "Department", key: "text", dataKey: "department" },
+    { header: "Task", key: "text", dataKey: "task" },
+    { header: "Status", key: "status", dataKey: "status" },
+  ];
+
+  const employeesData = [
+    {
+      name: "Darlene Robertson",
+      designation: "Team Lead",
+      department: "Backend Development",
+      task: "Mobile Login page integration",
+      status: "Work from home",
+    },
+    // Add more employee data here
+  ];
 
   return (
     <div className="bg-white min-h-screen">
       <div className="p-6 bg-white shadow-md rounded-lg">
         <div className="flex justify-between items-center mb-4">
-          <h1 className="text-2xl font-semibold text-gray-800">Attendees List</h1>
+          <h1 className="text-2xl font-semibold text-gray-800">
+            Attendees List
+          </h1>
 
           <div className="flex gap-5">
             <i className="fas fa-bell text-gray-700 text-xl cursor-pointer hover:text-gray-900"></i>
@@ -48,11 +70,12 @@ const Attendees = () => {
         {/* Filter/Search Section */}
         <div className="flex space-x-4 mb-4">
           <div className="p-4 bg-white-100 rounded-lg w-1/4 h-24">
-            <input
-              type="text"
-              placeholder="All"
-              className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+            <select className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="all">All</option>
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+              <option value="option3">Option 3</option>
+            </select>
           </div>
 
           <div className="p-4 bg-white-100 rounded-lg w-1/4 h-24">
@@ -76,7 +99,7 @@ const Attendees = () => {
               onClick={() => setFormVisible(true)}
               className="w-full py-2 text-white font-semibold rounded-lg text-sm hover:bg-gradient-to-b hover:from-purple-700 hover:to-purple-500"
               style={{
-                background: 'linear-gradient(180deg, #783FED 0%, #442487 100%)',
+                background: "linear-gradient(180deg, #783FED 0%, #442487 100%)",
               }}
             >
               Add New Attendee
@@ -90,7 +113,7 @@ const Attendees = () => {
             <h2
               className="w-full py-3 text-white font-semibold rounded-lg text-sm text-center"
               style={{
-                background: 'linear-gradient(180deg, #783FED 0%, #442487 100%)',
+                background: "linear-gradient(180deg, #783FED 0%, #442487 100%)",
               }}
             >
               Add New Attendee
@@ -174,14 +197,12 @@ const Attendees = () => {
                   />
                 </div>
 
-               
-
                 <div className="col-span-2 text-center mt-6">
                   <button
                     type="submit"
                     className="w-20 py-2 text-gray font-semibold rounded-lg text-sm"
                     style={{
-                      background: 'rgba(164, 164, 164, 1)',
+                      background: "rgba(164, 164, 164, 1)",
                     }}
                   >
                     Save
@@ -191,6 +212,15 @@ const Attendees = () => {
             </form>
           </div>
         )}
+
+        <div className="p-6">
+          <h1 className="text-2xl font-bold mb-6">Employees</h1>
+          <DashboardTable
+            columns={columns}
+            data={employeesData}
+            type="employees"
+          />
+        </div>
       </div>
     </div>
   );

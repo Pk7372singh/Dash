@@ -30,12 +30,21 @@ const Register = () => {
 
   return (
     <main className="flex justify-center items-center min-h-screen bg-gray-200 py-8 relative">
-      <i className="fas fa-user absolute top-[20px] left-[calc(20%-10px)] text-2xl mt-20 text-gray-600 transform -translate-x-1/2">Logo</i>
+      
 
       <div className="flex flex-row justify-center items-center bg-white rounded-lg shadow-lg overflow-hidden" style={{ width: '1200px', height: '640px' }}>
-        <div className="flex items-center justify-center w-1/2 bg-white p-4">
+        <div className="flex items-center justify-center w-1/2 bg-white p-6">
+        <div className=" fas fa-user absolute   text-xl  text-gray-600 top-16 left-72">
+
+        <i >Logo</i>
+
+        </div>
+        {/* <i className="fas fa-user absolute   text-xl  text-gray-600 -mt-6">Logo</i> */}
+        
           <form onSubmit={handleSubmit} className="bg-white p-8 border border-gray-300 rounded-lg w-full sm:w-96">
-            <div className="text-lg font-semibold text-gray-900 mb-6">Welcome to Dashboard</div>
+          
+          
+            <div className="text-lg font-semibold text-gray-900 mb-4 mt-8">Welcome to Dashboard</div>
 
             <div className="mb-6">
               <label htmlFor="fullName" className="block text-gray-700 text-sm mb-2">Full Name</label>
@@ -79,7 +88,7 @@ const Register = () => {
               />
               <div
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 transform -translate-y-1/2 cursor-pointer"
+                className="absolute right-3 transform -translate-y-1/2 cursor-pointer -mt-6"
               >
                 {showPassword ? (
                   <i className="fas fa-eye-slash text-gray-600"></i>
@@ -103,7 +112,7 @@ const Register = () => {
               />
               <div
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-3 transform -translate-y-1/2 cursor-pointer"
+                className="absolute right-3 transform -translate-y-1/2 cursor-pointer -mt-6"
               >
                 {showConfirmPassword ? (
                   <i className="fas fa-eye-slash text-gray-600"></i>
